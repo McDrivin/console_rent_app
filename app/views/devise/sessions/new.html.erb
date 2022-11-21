@@ -1,4 +1,4 @@
-<div class="container col-2 mt-3">
+<div class="container col-lg-3 mt-3">
   <h2>Log in</h2>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name),
@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Log in" %>
+      <%= f.button :submit, "Log in", class: "btn btn-primary" %>
     </div>
   <% end %>
 
