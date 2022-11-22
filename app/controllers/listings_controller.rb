@@ -8,6 +8,10 @@ class ListingsController < ApplicationController
     @listing = Listing.new
   end
 
+  def show
+    @listing = Listing.find(params[:id])
+  end
+
   def create
     @listing = Listing.new[listing_params]
     @listing.save
