@@ -11,3 +11,5 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:show, :destroy, :edit, :update]
 end
+  # resources :listings, only: %i[index create new show destroy]
+  #   resources :bookings, only: [ :index, :create, :new, :show, :destroy ]
