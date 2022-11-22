@@ -1,19 +1,20 @@
 class BookingsController < ApplicationController
   # skip_before_action :authenticate_user!, only: :home
 
-  def index
-    @bookings = Booking.all
-  end
-
   def create
     @booking = Booking.new[booking_params]
-    @booking.save
+    @listing = Listing.find(params[:listing_id])
+    @booking.listing = @listing
+    if @booking.save
+      redirect_to listing_path(@listing)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def new
     @booking = Booking.new
   end
-
 
   def show
     @booking = Booking.new(booking_params)
@@ -29,9 +30,20 @@ class BookingsController < ApplicationController
 
   private
 
-  def listing_params
-    params.require(:booking).permit(:title, :description, :rental_price)
+  def booking_params
+    params.require(:booking).permit(:listing_id, :user_id, :start_date, :end_date, :total_price)
   # def booking_params
   # params[:booking] # index create new show destroy
   end
 end
+
+  # def create
+  #   @bookmark = Bookmark.new(bookmark_params)
+  #   @list = List.find(params[:list_id])
+  #   @bookmark.list = @list
+  #   if @bookmark.save
+  #     redirect_to list_path(@list)
+  #   else
+  #     render :new, status: :unprocessable_entity
+  #   end
+  # end
