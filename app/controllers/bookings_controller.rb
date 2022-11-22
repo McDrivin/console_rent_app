@@ -2,9 +2,12 @@ class BookingsController < ApplicationController
   # skip_before_action :authenticate_user!, only: :home
 
   def create
-    @booking = Booking.new[booking_params]
-    @listing = Listing.find(params[:listing_id])
+    @booking = Booking.new(booking_params)
+    @listing = Listing.find(params[:listing_id].to_i)
     @booking.listing = @listing
+    @booking.user = current_user
+    @booking.total_price = (@booking.end_date - @booking.start_date) / 86400 * @listing.rental_price
+
     if @booking.save
       redirect_to listing_path(@listing)
     else
@@ -14,6 +17,7 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @listing = Listing.find(params[:listing_id])
   end
 
   def show
@@ -31,7 +35,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:listing_id, :user_id, :start_date, :end_date, :total_price)
+    params.require(:booking).permit(:start_date, :end_date)
   # def booking_params
   # params[:booking] # index create new show destroy
   end

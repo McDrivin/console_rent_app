@@ -12,6 +12,8 @@ require 'faker'
   listing = Listing.new(
   title:  Faker::Game.platform,
   user_id: 1,
-  )
+  rental_price: (0..100).to_a.sample,
+  description: "so cool"
+)
   listing.save!
 end
