@@ -1,11 +1,15 @@
 class ListingsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: %i[index show]
   def index
     @listings = Listing.all
   end
 
   def new
     @listing = Listing.new
+  end
+
+  def show
+    @listing = Listing.find(params[:id])
   end
 
   def create

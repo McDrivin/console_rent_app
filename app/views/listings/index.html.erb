@@ -11,7 +11,7 @@
             <h5 class="card-title"><%= listing.title %></h5>
             <p><%= listing.description %></p>
             <%# TODO: Change path to listing show page %>
-            <%= link_to "More info", user_session_path, class: "btn btn-primary" %>
+            <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %>
           </div>
         </div>
       </div>
