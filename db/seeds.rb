@@ -6,14 +6,18 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
+require "open-uri"
 
-
-25.times do
+puts "Start Seeding"
+12.times do |i|
   listing = Listing.new(
-  title:  Faker::Game.platform,
-  user_id: 1,
-  rental_price: (0..100).to_a.sample,
-  description: "so cool"
-)
-  listing.save!
+    title: Faker::Game.platform,
+    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    user_id: 1,
+    rental_price: (0..100).to_a.sample
+  )
+  file = URI.open("https://source.unsplash.com/random/500x500?gaming-console")
+  listing.photos.attach(io: file, filename: "#{i}.jpg", content_type: "image/jpg")
+  puts "#{i + 1} listing added." if listing.save
 end
+puts "Seed completed."
