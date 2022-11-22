@@ -1,4 +1,7 @@
-<h1><%= @listing.title %> </h1>
-
-<%= link_to "Book now", booking_path  %>
-<%= link_to "Book now", new_listing_booking_path(@listing)  %>
+<div class="container col-lg-3 mt-3">
+  <h1><%= @listing.title %></h1>
+  <%= cl_image_tag @listing.photos[0].key, height: 500, width: 500, crop: :fill, class: "img-fluid" %>
+  <p><%= @listing.description %></p>
+  <p class="fs-3 fw-bold">$<%= number_with_precision(@listing.rental_price, precision: 2) %> per day</p>
+  <%= link_to "Book now", new_listing_booking_path(@listing), class: "btn btn-primary"  %>
+</div>
