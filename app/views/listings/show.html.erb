@@ -1,1 +1,4 @@
 <h1><%= @listing.title %> </h1>
+
+<%= link_to "Book now", booking_path  %>
+<%= link_to "Book now", new_listing_booking_path(@listing)  %>
