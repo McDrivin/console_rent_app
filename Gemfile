@@ -81,3 +81,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "date_validator", "~> 0.12.0"
