@@ -31,6 +31,8 @@ gem "devise"
 
 gem 'faker'
 
+gem "simple_form", github: "heartcombo/simple_form"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
