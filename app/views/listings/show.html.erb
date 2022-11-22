@@ -1,4 +1,7 @@
-<h1><%= @listing.title %> </h1>
-
-<%= link_to "Book now", booking_path  %>
-<%= link_to "Book now", new_listing_booking_path(@listing)  %>
+<div class="container col-lg-3 mt-3">
+  <h1><%= @listing.title %></h1>
+  <% @listing.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+  <%= link_to "Book now", new_listing_booking_path(@listing)  %>
+</div>

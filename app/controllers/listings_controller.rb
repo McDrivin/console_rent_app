@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
+
   def index
     @listings = Listing.all
   end
@@ -13,13 +14,15 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new[listing_params]
+    @listing = Listing.new(listing_params)
+    # raise
+    @listing.user = current_user
     @listing.save
   end
 
   private
 
   def listing_params
-    params.require(:listing).permit(:title, :description, :rental_price)
+    params.require(:listing).permit(:title, :description, :rental_price, photos: [])
   end
 end

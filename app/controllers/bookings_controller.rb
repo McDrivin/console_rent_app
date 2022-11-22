@@ -36,18 +36,5 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
-  # def booking_params
-  # params[:booking] # index create new show destroy
   end
 end
-
-  # def create
-  #   @bookmark = Bookmark.new(bookmark_params)
-  #   @list = List.find(params[:list_id])
-  #   @bookmark.list = @list
-  #   if @bookmark.save
-  #     redirect_to list_path(@list)
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
