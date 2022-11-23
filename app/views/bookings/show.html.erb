@@ -1,7 +1,9 @@
 <div class="container col-lg-3 mt-3">
   <h1>Booking summary</h1>
 
-  <p> Reserved from: <%= @booking.start_date.to_date %> To: <%= @booking.end_date.to_date %></p>
-  <p>Duration: <%= (@booking.end_date - @booking.start_date).to_i / 86_400 %> day(s)</p>
-  <h5>Total rental: $<%= number_with_precision(@booking.total_price, precision: 2) %></h5>
+  <ul>
+    <li> Your pick up date is  <%= @booking.start_date.to_time.strftime('%B %e ')%> </li>
+    <li> You must return the product by <%= @booking.end_date.to_time.strftime('%B %e  ') %></li>
+    <li>The amount owing is $ <%= @booking.total_price %></li>
+  </ul>
 </div>
