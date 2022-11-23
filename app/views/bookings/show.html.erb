@@ -1,6 +1,7 @@
-<h1>Booking details:</h1>
+<div class="container col-lg-3 mt-3">
+  <h1>Booking summary</h1>
 
-
-<p> <%= @booking.start_date %> </p>
-<p> <%= @booking.end_date %></p>
-<p>$ <%= @booking.total_price %></p>
+  <p> Reserved from: <%= @booking.start_date.to_date %> To: <%= @booking.end_date.to_date %></p>
+  <p>Duration: <%= (@booking.end_date - @booking.start_date).to_i / 86_400 %> day(s)</p>
+  <h5>Total rental: $<%= number_with_precision(@booking.total_price, precision: 2) %></h5>
+</div>
