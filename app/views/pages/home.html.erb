@@ -5,10 +5,14 @@
       <div class="col-3">
         <div class="card">
           <%= cl_image_tag listing.photos[0].key, class: "card-img-top" %>
-          <%# <img src="https://www.target.com.au/medias/static_content/product/images/full/67/85/A1566785.jpg?impolicy=product_portrait_hero" class="card-img-top"> %>
           <div class="card-body">
             <h5 class="card-title"><%= listing.title %></h5>
-            <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %>
+            <% if listing.availability %>
+              <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %>
+            <% else %>
+              <p class="text-align-center" style="color: white; background: red">Currently unavailable.</p>
+              <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %>
+            <% end %>
           </div>
         </div>
       </div>
