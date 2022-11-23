@@ -17,7 +17,7 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     @listing.user = current_user
-    if  @listing.save
+    if @listing.save
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -39,6 +39,7 @@ class ListingsController < ApplicationController
   def set_listing
     @listing = Listing.find(params[:id])
   end
+
   def listing_params
     params.require(:listing).permit(:title, :description, :rental_price, :availability, photos: [])
   end
