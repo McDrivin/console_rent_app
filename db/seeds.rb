@@ -11,7 +11,6 @@ require "open-uri"
 emails = ["test@test.com", "test1@test.com"]
 
 puts "Start Seeding"
-
 emails.each do |email|
   user = User.create!(email: email, password: "secret")
   12.times do |i|
