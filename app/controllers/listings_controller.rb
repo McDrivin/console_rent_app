@@ -18,8 +18,8 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user = current_user
     @listing.availability = true
-    if  @listing.save
-      redirect_to root_path
+    if @listing.save
+      redirect_to @listing, notice: "Listing was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,10 +29,16 @@ class ListingsController < ApplicationController
   end
 
   def update
-    @listing = Listing.update(listing_params)
+    if @listing.update(listing_params)
+      redirect_to @listing, notice: "Listing was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @listing.destroy
+    redirect_to dashboard_path, notice: "Listing was successfully destroyed."
   end
 
   private
