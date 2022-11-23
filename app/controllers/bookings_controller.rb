@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     @booking.total_price = (@booking.end_date - @booking.start_date) / 86_400 * @listing.rental_price
 
     if @booking.save
-      redirect_to listing_path(@listing)
+      redirect_to booking_path(@booking)
     else
       render :new, status: :unprocessable_entity
     end
