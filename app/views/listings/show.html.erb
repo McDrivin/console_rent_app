@@ -1,9 +1,9 @@
 <div class="container col-lg-3 mt-3">
   <h1><%= @listing.title %></h1>
   <% if @listing.photos.any? %>
-    <%= cl_image_tag @listing.photos.first.key, height: 500, width: 500, crop: :fill, class: "img-fluid" %>
+    <%= cl_image_tag @listing.photos.first.key, class: "img-fluid" %>
   <% else %>
-    <%# Put a default here %>
+    <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder">
   <% end %>
   <p><%= @listing.description %></p>
   <p class="fs-3 fw-bold">$<%= number_with_precision(@listing.rental_price, precision: 2) %> per day</p>
