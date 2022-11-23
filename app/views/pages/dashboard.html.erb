@@ -1,0 +1,30 @@
+<div class="container col-lg-4 mt-3">
+  <h1>Dashboard</h1>
+  <h2>My Listings</h2>
+  <ul class="list-group">
+    <% @listings.each do |listing| %>
+    <li class="list-group-item mb-2">
+      <div class="card-product d-flex align-items-center justify-content-between">
+        <% if listing.photos.any? %>
+          <%= cl_image_tag listing.photos.first.key, class: "card-img-top", style: "width: 100px" %>
+        <% else %>
+          <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder" style="width: 100px">
+        <% end %>
+        <div class="card-product-infos">
+          <h2><%= listing.title %></h2>
+        </div>
+        <div>
+          <%= link_to edit_listing_path(listing) do %><i class="fa-solid fa-pen-to-square"></i><% end %>
+          <%= link_to "", listing_path(listing), class: "fa-sharp fa-solid fa-trash", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+  <h2 class="mt-3">My Bookings</h2>
+  <ul class="list-group">
+    <% @bookings.each do |booking| %>
+    <li class="list-group-item"><%= Listing.find(booking.listing_id).title %> (Return by: <%= booking.end_date.strftime('%B %e ') %>)</li>
+  <% end %>
+  </ul>
+</div>

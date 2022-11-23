@@ -4,4 +4,9 @@ class PagesController < ApplicationController
   def home
     @listings = Listing.all
   end
+
+  def dashboard
+    @listings = Listing.where(user_id: current_user.id)
+    @bookings = Booking.where(user_id: current_user.id)
+  end
 end
