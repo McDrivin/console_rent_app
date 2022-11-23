@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @listing = Listing.find(params[:listing_id].to_i)
-    @listing.availability = false
+    @listing.availability = true
     @booking.listing = @listing
     @booking.user = current_user
     @booking.total_price = (@booking.end_date - @booking.start_date) / 86_400 * @listing.rental_price
