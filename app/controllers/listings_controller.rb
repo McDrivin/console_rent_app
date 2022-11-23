@@ -17,7 +17,11 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     # raise
     @listing.user = current_user
-    @listing.save
+    if  @listing.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
