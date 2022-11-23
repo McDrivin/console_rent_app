@@ -1,7 +1,9 @@
-<h1>Booking details:</h1>
+<div class="container col-lg-3 mt-3">
+  <h1>Booking summary</h1>
 
-<ul>
-<li> Your pick up date is  <%= @booking.start_date.to_time.strftime('%B %e ')%> </li>
-<li> You must return the product by <%= @booking.end_date.to_time.strftime('%B %e  ') %></li>
-<li>The amount owing is $ <%= @booking.total_price %></li>
-</ul>
+  <ul>
+    <li> Your pick up date is  <%= @booking.start_date.to_time.strftime('%B %e ')%> </li>
+    <li> You must return the product by <%= @booking.end_date.to_time.strftime('%B %e  ') %></li>
+    <li>The amount owing is $ <%= @booking.total_price %></li>
+  </ul>
+</div>
