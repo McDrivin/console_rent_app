@@ -6,10 +6,9 @@ class ListingsController < ApplicationController
     if params[:query].present?
       @listings = Listing.search_by_title_and_description(params[:query])
     else
-      @listings = Listing.all
+      @listings = Listing.where.not(user: current_user)
     end
   end
-
 
   # def index
   #   if params[:query].present?

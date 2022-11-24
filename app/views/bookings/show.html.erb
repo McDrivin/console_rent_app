@@ -1,9 +1,18 @@
 <div class="container col-lg-3 mt-3">
   <h1>Booking summary</h1>
-
-  <ul>
-    <li> Your pick up date is  <%= @booking.start_date.to_time.strftime('%B %e ')%> </li>
-    <li> You must return the product by <%= @booking.end_date.to_time.strftime('%B %e  ') %></li>
-    <li>The amount owing is $ <%= @booking.total_price %></li>
+  <div class="card-product d-flex align-items-center justify-content-between mb-2">
+    <% if @listing.photos.any? %>
+      <%= cl_image_tag @listing.photos.first.key, class: "card-img-top"%>
+    <% else %>
+      <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder">
+    <% end %>
+    <div class="card-product-infos flex-fill ms-3">
+      <h3 class="m-0"><%= @listing.title %></h3>
+    </div>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item"> Your pick up date is <strong><%= @booking.start_date.to_time.strftime('%B %e ')%></strong></li>
+    <li class="list-group-item"> You must return the product by <strong><%= @booking.end_date.to_time.strftime('%B %e  ') %></strong></li>
+    <li class="list-group-item">The amount owing is <strong>$<%= number_with_precision(@booking.total_price, precision: 2) %></strong></li>
   </ul>
 </div>
