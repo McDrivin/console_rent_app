@@ -1,25 +1,11 @@
-<div class="container mt-3">
-  <h1>Latest listings</h1>
-  <div class="row gy-4">
-    <% @listings.each do |listing| %>
-      <div class="col-3">
-        <div class="card">
-          <% if listing.photos.any? %>
-            <%= cl_image_tag listing.photos.first.key, class: "card-img-top" %>
-          <% else %>
-            <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder">
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= listing.title %></h5>
-            <% if false %>
-            <%# if listing.availability %>
-              <%# link_to "More info", listing_path(listing), class: "btn btn-primary" %>
-            <% else %>
-              <%# <p class="text-align-center" style="color: white; background: red">Currently unavailable.</p> %>
-            <% end %>
-              <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %></div>
-        </div>
+<div class="banner">
+      <div class="text-white">
+        <h1>Gaming Zone🎮</h1>
+        <h5>Get gaming today</h5>
+        <div class="container">
+      <div class="center">
+        <%= link_to "Game away", listings_path(@listing), class: "btn btn-secondary" %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -4,16 +4,20 @@
     <% @listings.each do |listing| %>
       <div class="col-3">
         <div class="card">
-          <%= cl_image_tag listing.photos[0].key, class: "card-img-top" %>
+          <% if listing.photos.any? %>
+            <%= cl_image_tag listing.photos.first.key, class: "card-img-top" %>
+          <% else %>
+            <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder">
+          <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= listing.title %></h5>
-            <% if listing.availability %>
-              <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %>
+            <% if false %>
+            <%# if listing.availability %>
+              <%# link_to "More info", listing_path(listing), class: "btn btn-primary" %>
             <% else %>
-              <p>This item currently unavailable.</p>
-              <%= link_to "More info", listing_path(listing), class: "btn btn-primary disabled" %>
+              <%# <p class="text-align-center" style="color: white; background: red">Currently unavailable.</p> %>
             <% end %>
-          </div>
+              <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %></div>
         </div>
       </div>
     <% end %>
