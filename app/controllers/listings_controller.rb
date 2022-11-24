@@ -12,6 +12,7 @@ class ListingsController < ApplicationController
 
   def show
     @booking = Booking.find_by(listing_id: @listing.id)
+    @new_booking = Booking.new
   end
 
   def create

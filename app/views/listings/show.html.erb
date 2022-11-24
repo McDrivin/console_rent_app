@@ -1,17 +1,17 @@
 <div class="container col-lg-4 mt-3">
   <h1><%= @listing.title %></h1>
   <div class="row">
-    <div id="carouselExampleControls" class="carousel slide col-6" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide col-8" data-bs-ride="carousel">
       <div class="carousel-inner">
         <% if @listing.photos.any? %>
-          <%= @listing.photos.each do |photo| %>
-            <div class="carousel-item active">
+          <% @listing.photos.each do |photo| %>
+            <div class="carousel-item active" style="border: 5px solid white">
               <%= cl_image_tag photo.key, class: "d-block w-100" %>
             </div>
           <% end %>
         <% else %>
           <div class="carousel-item active">
-            <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" class="w-100">
+            <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" class="w-100" style="border: 5px solid white">
           </div>
         <% end %>
       </div>
@@ -24,24 +24,22 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <p class="fs-3 fw-semibold mb-0">$<%= number_with_precision(@listing.rental_price, precision: 2) %></p>
       <p>(per day)</p>
       <% if @listing.user == current_user %>
         <%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-primary"  %>
         <%= link_to "Delete", listing_path(@listing), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
       <% else %>
-          <%= link_to "Book now", new_listing_booking_path(@listing), class: "btn btn-primary"  %>
+        <%= simple_form_for [@listing, @new_booking],  data: { turbo: false } do |f| %>
+          <%= f.input :start_date, as: :date, html5: true %>
+          <%= f.input :end_date, as: :date, html5: true %>
+          <%= f.button :submit, class: "btn btn-primary"%>
+        <% end %>
       <% end %>
     </div>
   </div>
   <div class="mt-3">
     <p><%= @listing.description %></p>
   </div>
-    <%# if @listing.availability %>
-      <%# link_to "Book now", new_listing_booking_path(@listing), class: "btn btn-primary"  %>
-    <%# else %>
-      <%# <p class="text-align-center" style="color: red"><%= "This item already has a booking until #{@booking.end_date.to_date}"</p>  %>
-      <%# link_to "Book now", new_listing_booking_path(@listing), class: "btn btn-primary disabled"  %>
-  <%# end %>
 </div>

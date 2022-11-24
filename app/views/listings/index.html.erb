@@ -11,13 +11,8 @@
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= listing.title %></h5>
-            <% if false %>
-            <%# if listing.availability %>
-              <%# link_to "More info", listing_path(listing), class: "btn btn-primary" %>
-            <% else %>
-              <%# <p class="text-align-center" style="color: white; background: red">Currently unavailable.</p> %>
-            <% end %>
-              <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %></div>
+            <%= link_to "More info", listing_path(listing), class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     <% end %>
