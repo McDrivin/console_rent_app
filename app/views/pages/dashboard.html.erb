@@ -3,7 +3,7 @@
   <h2>My Listings</h2>
   <ul class="list-group">
     <% @listings.each do |listing| %>
-    <li class="list-group-item mb-2">
+    <li class="list-group-item mb-2 accordion">
       <div class="d-flex align-items-center justify-content-between">
         <% if listing.photos.any? %>
           <%= cl_image_tag listing.photos.first.key, class: "card-img-top", style: "width: 100px" %>
