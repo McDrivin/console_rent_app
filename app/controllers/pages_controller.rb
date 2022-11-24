@@ -9,4 +9,9 @@ class PagesController < ApplicationController
     @listings = Listing.where(user_id: current_user.id)
     @bookings = Booking.where(user_id: current_user.id)
   end
+
+  def rentals
+    @listing = Listing.find(params[:id])
+    @bookings = Booking.where(listing_id: params[:id])
+  end
 end
