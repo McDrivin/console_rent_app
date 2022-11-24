@@ -1,1 +1,26 @@
 // Specific CSS for your home-page
+@import url("components/container.css");
+@import url("components/button.css");
+
+.banner {
+    background-image: url(carl-raw-m3hn2Kn5Bns-unsplash.jpg);
+    height: 845px;
+    background-size: cover;
+    background-position: center;
+  }
+
+h1, h5 {
+  text-align: center;
+  font-family: Arial;
+}
+
+
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
