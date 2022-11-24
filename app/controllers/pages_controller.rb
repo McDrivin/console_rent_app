@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    @listings = Listing.all
+    @listings = Listing.where.not(user: current_user)
   end
 
   def dashboard
