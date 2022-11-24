@@ -1,6 +1,4 @@
 class BookingsController < ApplicationController
-  # skip_before_action :authenticate_user!, only: :home
-
   def create
     @booking = Booking.new(booking_params)
     @listing = Listing.find(params[:listing_id].to_i)
@@ -15,11 +13,6 @@ class BookingsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def new
-    @booking = Booking.new
-    @listing = Listing.find(params[:listing_id])
   end
 
   def show
