@@ -10,11 +10,12 @@
         <% else %>
           <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder" style="width: 100px">
         <% end %>
-        <div class="">
+        <div class="flex-fill ms-2">
           <h2><%= listing.title %></h2>
         </div>
         <div>
-          <%= link_to listing_path(listing), title: "View" do %><i class="fa-solid fa-eye"></i><% end %>
+          <%= link_to rentals_path(listing), title: "Rentals", target: :_blank do %><i class="fa-solid fa-calendar-days"></i><% end %>
+          <%= link_to listing_path(listing), title: "View", target: :_blank do %><i class="fa-solid fa-eye"></i><% end %>
           <%= link_to edit_listing_path(listing), title: "Edit" do %><i class="fa-solid fa-pen-to-square"></i><% end %>
           <%= link_to listing_path(listing), title: "Delete", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %><i class="fa-sharp fa-solid fa-trash"></i><% end %>
         </div>

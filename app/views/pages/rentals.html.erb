@@ -1,0 +1,32 @@
+<div class="container col-4 mt-3">
+  <div class="card-product d-flex align-items-center justify-content-between mb-4">
+    <% if @listing.photos.any? %>
+      <%= cl_image_tag @listing.photos.first.key, class: "card-img-top"%>
+    <% else %>
+      <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder">
+    <% end %>
+    <div class="card-product-infos flex-fill ms-3">
+      <h3 class="m-0"><%= @listing.title %></h3>
+    </div>
+  </div>
+  <% if !@bookings.empty? %>
+    <h3>Active rentals</h3>
+    <ul class="list-group">
+      <% @bookings.each do |booking| %>
+        <li class="list-group-item mb-2" >
+          <% if User.find_by(id: booking.user_id).first_name.nil? %>
+            <strong><%= User.find_by(id: booking.user_id).email %></strong>
+          <% else %>
+            <strong><%= User.find_by(id: booking.user_id).first_name %> <%= User.find_by(id: booking.user_id).last_name %></strong>
+          <% end %>
+          has made a booking from
+          <strong><%= booking.start_date.strftime('%B %e ') %></strong>
+          to
+          <strong><%= booking.end_date.strftime('%B %e ') %></strong>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h3>No active bookings :(</h3>
+  <% end %>
+</div>
