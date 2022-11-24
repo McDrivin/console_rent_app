@@ -3,8 +3,24 @@ class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @listings = Listing.where.not(user: current_user)
+    if params[:query].present?
+      @listings = Listing.search_by_title_and_description(params[:query])
+    else
+      @listings = Listing.where.not(user: current_user)
+    end
   end
+
+  # def index
+  #   if params[:query].present?
+  #     @movies = Movie.where("title ILIKE ?", "%#{params[:query]}%")
+  #   else
+  #     @movies = Movie.all
+  #   end
+  # end
+
+  # def index
+  #   @listings = Listing.all
+  # end
 
   def new
     @listing = Listing.new

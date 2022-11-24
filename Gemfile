@@ -31,6 +31,8 @@ gem "devise"
 
 gem 'faker'
 
+gem "pg_search"
+
 gem "simple_form", github: "heartcombo/simple_form"
 
 # Use Redis adapter to run Action Cable in production
