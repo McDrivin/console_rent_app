@@ -1,4 +1,4 @@
-<div class="container col-lg-4 mt-3">
+<div class="container col-lg-6 mt-3">
   <h1>Dashboard</h1>
   <h2>My Listings</h2>
   <ul class="list-group">
@@ -11,7 +11,7 @@
           <img src="https://res.cloudinary.com/dq9hvwxj8/image/upload/v1669199190/hhth1iyyoguqnzs7hg9e.jpg" alt="Placeholder" style="width: 100px">
         <% end %>
         <div class="flex-fill ms-2">
-          <h2><%= listing.title %></h2>
+          <h5><%= listing.title %></h5>
         </div>
         <div>
           <%= link_to rentals_path(listing), title: "Rentals", target: :_blank do %><i class="fa-solid fa-calendar-days"></i><% end %>
