@@ -1,17 +1,17 @@
 class BookingsController < ApplicationController
   def create
-    @booking = Booking.new(booking_params)
+    @new_booking = Booking.new(booking_params)
     @listing = Listing.find(params[:listing_id].to_i)
     @listing.availability = true
-    @booking.listing = @listing
-    @booking.user = current_user
-    @booking.total_price = (@booking.end_date - @booking.start_date) / 86_400 * @listing.rental_price
+    @new_booking.listing = @listing
+    @new_booking.user_id = current_user.id
+    @new_booking.total_price = (@new_booking.end_date - @new_booking.start_date) / 86_400 * @listing.rental_price
 
-    if @booking.save
+    if @new_booking.save
       @listing.save
-      redirect_to booking_path(@booking)
+      redirect_to booking_path(@new_booking)
     else
-      render :new, status: :unprocessable_entity
+      render "listings/show", status: :unprocessable_entity
     end
   end
 
